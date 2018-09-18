@@ -9,8 +9,6 @@ Created on Wed Sep 12 22:38:01 2018
 #returns is defined as below
 # return = (today_price - previous_price)/ previous_price
 
-
-
 def create_random_dataframe(days=5, stocks_number=3):
     import pandas as pd
     dias = pd.date_range('01/01/2018', periods=days, freq='D')    
@@ -19,11 +17,12 @@ def create_random_dataframe(days=5, stocks_number=3):
     
     for n in range(stocks_number):
         stock_name = random_string(4)
-        stock_prices = random_prices(3,120,days)
+        stock_prices = random_prices(5.0,110.0,days)
         stocks[stock_name] = stock_prices
     
     return pd.DataFrame(stocks, dias)
     
+#===============================================================================
 
 def random_string(string_size=3):
     import random as r
@@ -31,9 +30,13 @@ def random_string(string_size=3):
     chars = s.ascii_uppercase
     return ''.join(r.choice(chars) for x in range(string_size))
 
-def random_prices(low=1, high=99, days=5):
+#===============================================================================
+
+def random_prices(low=1.0, high=99.0, days=5):
     import random as r
-    return r.sample(range(low, high), k=days)
+    return r.sample([round(r.uniform(low, high),2) for j in range(days)], k=days)
+
+#===============================================================================
 
 def calculate_return(stocks_dataframe, dias=1):
     hoje = stocks_dataframe
