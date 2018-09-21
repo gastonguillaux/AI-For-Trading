@@ -43,3 +43,29 @@ def calculate_return(stocks_dataframe, dias=1):
     ontem = stocks_dataframe.shift(dias)
     retorno = (hoje-ontem)/ontem
     return retorno
+
+#===============================================================================
+
+
+def compute_log_returns(prices):
+    """
+    Compute log returns for each ticker.
+    
+    Parameters
+    ----------
+    prices : DataFrame
+        Prices for each ticker and date
+    
+    Returns
+    -------
+    log_returns : DataFrame
+        Log returns for each ticker and date
+    """
+    
+    # TODO: Implement Function
+    import numpy as np
+    log_d0 = np.log(prices)
+    log_d_1 = np.log(prices.shift(1))
+    log_r = log_d0 - log_d_1
+    
+    return log_r
