@@ -69,3 +69,5 @@ def compute_log_returns(prices):
     log_r = log_d0 - log_d_1
     
     return log_r
+
+#===============================================================================
